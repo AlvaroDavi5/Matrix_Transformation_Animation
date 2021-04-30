@@ -24,7 +24,15 @@ import matplotlib.pyplot as plt # graphics and math expressions plot
 from mpl_toolkits.mplot3d import Axes3D, art3d # class and module to 3D projection
 from math import sin, cos, tan # trigonometric functions
 from stl import mesh # .stl files read
-#
 
 
 
+figure = plt.figure()
+axes = Axes3D(figure)
+cassini = mesh.Mesh.from_file("./models/cassini.stl")
+juno = mesh.Mesh.from_file("./models/Juno.stl")
+rock_ground = mesh.Mesh.from_file("./models/Block_Island.stl")
+axes.add_collection3d(art3d.Poly3DCollection(cassini.vectors))
+scale = cassini.points.flatten()
+axes.auto_scale_xyz(scale, scale, scale)
+plt.show()
