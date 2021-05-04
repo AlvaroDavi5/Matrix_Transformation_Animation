@@ -7,7 +7,6 @@ import numpy as np # numeric manipulations, constants and functions
 ''' load the STL files and add the vectors to the plot '''
 cassini_stl = mesh.Mesh.from_file("./models/cassini.stl")
 juno_stl = mesh.Mesh.from_file("./models/Juno.stl")
-rock_ground_stl = mesh.Mesh.from_file("./models/Block_Island.stl")
 
 
 ''' make axes of 3D plot have equal scale so that spheres appear as spheres, cubes as cubes, etc..  This is one possible solution to Matplotlib's ax.set_aspect('equal') and ax.axis('equal') not working for 3D '''
@@ -46,9 +45,48 @@ def get3DCoordinatesArray(my_mesh_stl):
 ''' get the models x, y, z coordinates array '''
 cassini = get3DCoordinatesArray(cassini_stl)
 juno = get3DCoordinatesArray(juno_stl)
-rock = get3DCoordinatesArray(rock_ground_stl)
 
 ''' get the vectors that define the triangular faces that form the 3D object '''
 cassini_vectors = cassini_stl.vectors
 juno_vectors = juno_stl.vectors
-rock_vectors = rock_ground_stl.vectors
+
+
+
+
+# creating a house
+house_matrix = np.array([
+         [0,         0,         0],
+         [0,  -10.0000,         0],
+         [0, -10.0000,   12.0000],
+         [0,  -10.4000,   11.5000],
+         [0,   -5.0000,   16.0000],
+         [0,         0,   12.0000],
+         [0,    0.5000,   11.4000],
+         [0,         0,   12.0000],
+         [0,         0,         0],
+  [-12.0000,         0,         0],
+  [-12.0000,   -5.0000,         0],
+  [-12.0000,  -10.0000,         0],
+         [0,  -10.0000,         0],
+         [0,  -10.0000,   12.0000],
+  [-12.0000,  -10.0000,   12.0000],
+  [-12.0000,         0,   12.0000],
+         [0,         0,   12.0000],
+         [0,  -10.0000,   12.0000],
+         [0,  -10.5000,   11.4000],
+  [-12.0000,  -10.5000,   11.4000],
+  [-12.0000,  -10.0000,   12.0000],
+  [-12.0000,   -5.0000,   16.0000],
+         [0,   -5.0000,   16.0000],
+         [0,    0.5000,   11.4000],
+  [-12.0000,    0.5000,   11.4000],
+  [-12.0000,         0,   12.0000],
+  [-12.0000,   -5.0000,   16.0000],
+  [-12.0000,  -10.0000,   12.0000],
+  [-12.0000,  -10.0000,         0],
+  [-12.0000,   -5.0000,         0],
+  [-12.0000,         0,         0],
+  [-12.0000,         0,   12.0000],
+  [-12.0000,         0,         0]])
+
+house = np.transpose(house_matrix)
