@@ -17,6 +17,7 @@
 
 
 ''' import libs '''
+from scipy.constants import pi # scientific functions and numerics constants
 import numpy as np # numeric manipulations, constants and functions
 import matplotlib.pyplot as plt # graphics and math expressions plot
 #%matplotlib inline # show plots on jupyter notebook cell
@@ -46,34 +47,47 @@ juno = setObjects(md.juno)
 
 fig = plt.figure(figsize=(10,10))
 ax0 = plt.axes(projection='3d')
-#plt.close()
 
-ax0.set_xlim3d((-50, 50))
-ax0.set_ylim3d((-50, 50))
-ax0.set_zlim3d((-10, 50))
+''' limiting the plot axis size '''
+ax0.set_xlim3d((-70, 70))
+ax0.set_ylim3d((-70, 70))
+ax0.set_zlim3d((-50, 50))
 
 ''' listing the objects that are going to be drawn '''
 obj1, = ax0.plot3D([], [], [], lw=2, color='gold')
 obj2, = ax0.plot3D([], [], [], lw=2,  color='#240f00')  
 
 
-''' animation initialization function '''
+''' animation function, is called sequentially '''
 def init():
-	obj1.set_data(cassini[0,:], cassini[1,:])
-	obj1.set_3d_properties(cassini[2,:])
-	return (obj1,)
+	# defining initial positions
+	my_obj1 = cassini
+	my_obj2 = juno
+
+	# set objects
+	obj1.set_data(my_obj1[0,:], my_obj1[1,:])
+	obj1.set_3d_properties(my_obj1[2,:])
+	obj2.set_data(my_obj2[0,:], my_obj2[1,:])
+	obj2.set_3d_properties(my_obj2[2,:])
+
+	return (obj1, obj2,)
 
 ''' animation function, is called sequentially '''
 def animate(i):
-	# Defining the translation to be applied to a second object
-	T3 = tfmt.move(-0.05*i,0.3*i,0.2*i)
-	# Move the object
-	my_obj1 = np.dot(T3, juno)
+	# defining the transformation to animation
+	T = tfmt.move(-0.05*i,0.3*i,0.2*i)
+	R = tfmt.z_rotation((pi/2)*i)
+	# moving the objects
+	my_obj1 = np.dot(R, cassini)
+	my_obj2 = np.dot(T, juno)
 
-	obj2.set_data(my_obj1[0,:], my_obj1[1,:])
-	obj2.set_3d_properties(my_obj1[2,:])
+	# set objects
+	obj1.set_data(my_obj1[0,:], my_obj1[1,:])
+	obj1.set_3d_properties(my_obj1[2,:])
+	obj2.set_data(my_obj2[0,:], my_obj2[1,:])
+	obj2.set_3d_properties(my_obj2[2,:])
 
-	return (obj2,)
+	return (obj1, obj2,)
 
 
 anim = animation.FuncAnimation(fig, func=animate, init_func=init, frames=100, interval=100, blit=True) # make the animation
