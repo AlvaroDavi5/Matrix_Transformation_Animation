@@ -1,0 +1,7 @@
+
+math
+mathplotlib
+mesh
+numpy
+numpy-stl
+scipy
