@@ -31,25 +31,24 @@ def set_axes_equal(ax): # 'ax' is a matplotlib axis, e.g., as output from plt.gc
 	ax.set_zlim3d([z_middle - plot_radius, z_middle + plot_radius])
 
 
-''' get the Cassini x, y, z coordinates contained in the mesh structure - readed from STL - that are the vertices of the triangular faces of the object '''
-cassini_x = cassini_stl.x.flatten()
-cassini_y = cassini_stl.y.flatten()
-cassini_z = cassini_stl.z.flatten()
-''' get the Juno x, y, z coordinates '''
-juno_x = juno_stl.x.flatten()
-juno_y = juno_stl.y.flatten()
-juno_z = juno_stl.z.flatten()
-''' get the Block Island x, y, z coordinates '''
-rock_x = rock_ground_stl.x.flatten()
-rock_y = rock_ground_stl.y.flatten()
-rock_z = rock_ground_stl.z.flatten()
+''' get the mesh object x, y, z coordinates contained in the mesh structure - readed from STL - that are the vertices of the triangular faces of the object '''
+def get3DCoordinatesArray(my_mesh_stl):
+	x = my_mesh_stl.x.flatten()
+	y = my_mesh_stl.y.flatten()
+	z = my_mesh_stl.z.flatten()
+
+	''' create the 3D objects from the x,y,z coordinates and add the additional array of ones to represent the object using homogeneous coordinates '''
+	my_mesh = np.array([x.T, y.T, z.T, np.ones(x.size)])  # transposed to become a column
+
+	return my_mesh
+
+
+''' get the models x, y, z coordinates array '''
+cassini = get3DCoordinatesArray(cassini_stl)
+juno = get3DCoordinatesArray(juno_stl)
+rock = get3DCoordinatesArray(rock_ground_stl)
 
 ''' get the vectors that define the triangular faces that form the 3D object '''
 cassini_vectors = cassini_stl.vectors
 juno_vectors = juno_stl.vectors
 rock_vectors = rock_ground_stl.vectors
-
-''' create the 3D objects from the x,y,z coordinates and add the additional array of ones to represent the object using homogeneous coordinates '''
-cassini = np.array([cassini_x.T,cassini_y.T,cassini_z.T,np.ones(cassini_x.size)])
-juno = np.array([juno_x.T,juno_y.T,juno_z.T,np.ones(juno_x.size)])
-rock = np.array([rock_x.T,rock_y.T,rock_z.T,np.ones(rock_x.size)]) # transposed to become a column
