@@ -9,7 +9,7 @@
 
 	Alvaro Davi S. Alves - 2020101874
 
-	Expressao Grafica para Engenharia
+	Expressao Grafica para Engenharia Eletrica
 
 	Universidade Federal do Espirito Santo
 
