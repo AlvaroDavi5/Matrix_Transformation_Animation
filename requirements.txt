@@ -1,6 +1,6 @@
 
-math==*
-mathplotlib==3.3.4
+#math==*
+#mathplotlib==3.3.4
 mesh==1.0.0a1
 numpy==1.19.5
 numpy-stl==2.16.0
