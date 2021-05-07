@@ -3,7 +3,7 @@ This code has created by Alvaro Davi using STL models avaliable on:
 [NASA Models](https://nasa3d.arc.nasa.gov/models)
 
 
-## Animacao Tridimensional usando Transformacoes Matriciais
+## Animação Tridimensional usando Transformações Matriciais
 
 _Alvaro Davi S. Alves_ - **2020101874**
 
