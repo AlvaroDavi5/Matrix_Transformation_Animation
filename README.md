@@ -9,7 +9,10 @@ _Alvaro Davi S. Alves_ - **2020101874**
 
 Segundo Trabalho de ```Expressão Gráfica para Engenharia Elétrica```
 
-Universidade Federal do Espirito Santo
+
+#### Turma de Engenharia da Computação
+
+### Universidade Federal do Espirito Santo
 
 
 <img src="https://www.ufes.br/sites/all/themes/padrao_ufes/images/marca_ufes.png" alt="logo da ufes" height="150px" width="250px">  

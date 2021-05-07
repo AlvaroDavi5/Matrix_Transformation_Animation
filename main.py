@@ -11,6 +11,8 @@
 
 	Expressao Grafica para Engenharia Eletrica
 
+	Turma de Engenharia da Computação
+
 	Universidade Federal do Espirito Santo
 
 """
